@@ -1,0 +1,72 @@
+﻿// pages/api/translate.js
+// Robust proxy: tries multiple LibreTranslate endpoints and returns { translation: "..." }.
+// Logs helpful info to the server console for debugging.
+
+export default async function handler(req, res) {
+  const { text, target } = req.query || {};
+
+  if (!text || !target) {
+    return res.status(400).json({ translation: null, error: "Missing text or target" });
+  }
+
+  const endpoints = [
+    "https://libretranslate.com/translate",
+    "https://libretranslate.de/translate",
+    // add more public instances here if you find them
+  ];
+
+  let lastError = null;
+
+  for (const url of endpoints) {
+    try {
+      const r = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          q: text,
+          source: "auto",
+          target: target,
+          format: "text"
+        }),
+      });
+
+      const raw = await r.text().catch(() => null);
+
+      // Try parse JSON if present
+      let json = null;
+      try { json = raw ? JSON.parse(raw) : null; } catch (e) { json = null; }
+
+      if (!r.ok) {
+        console.error("Remote returned non-200", { url, status: r.status, body: raw });
+        lastError = { url, status: r.status, body: raw };
+        continue;
+      }
+
+      // Common response shapes
+      const translated =
+        (json && (json.translatedText || json.translation || json.translated || json.result || (json.data && json.data.translatedText))) ||
+        null;
+
+      if (translated) {
+        return res.status(200).json({ translation: translated });
+      }
+
+      // If remote returned plain text, return that as fallback
+      if (raw && typeof raw === "string" && raw.trim().length > 0) {
+        return res.status(200).json({ translation: raw });
+      }
+
+      // nothing usable
+      console.error("Remote returned OK but no translated text", { url, raw });
+      lastError = { url, status: r.status, body: raw };
+      continue;
+    } catch (err) {
+      console.error("Fetch failed for", url, "error:", err && err.message ? err.message : err);
+      lastError = { url, error: String(err) };
+      // try next endpoint
+    }
+  }
+
+  console.error("All endpoints failed. Last error:", lastError);
+  return res.status(502).json({ translation: null, error: "All remote translate endpoints failed", details: lastError });
+}

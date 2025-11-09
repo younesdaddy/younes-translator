@@ -1,0 +1,35 @@
+[00:00:02.461] Server  LOG      ✓ Ready in 1702ms
+[00:01:30.351] Server  LOG      ✓ Compiled in 24ms
+[00:02:37.750] Browser LOG     Refreshing page data due to server-side change
+[00:02:37.927] Server  ERROR    ⨯ ReferenceError: authorized is not defined
+[00:02:38.520] Browser ERROR   uncaughtError: ReferenceError: authorized is not defined
+[00:03:09.386] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:03:09.480] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:03:10.822] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  <Root callbacks={[...]}>
+    <Head>
+    <AppContainer>
+      <Container fn={function fn}>
+        <PagesDevOverlayBridge>
+          <PagesDevOverlayErrorBoundary>
+            <PathnameContextProviderAdapter router={{sdc:{},sbc:{}, ...}} isAutoExport={true}>
+              <App pageProps={{}} Component={function Admin} err={undefined} router={{sdc:{},sbc:{}, ...}}>
+                <Admin>
+                  <div
+                    style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",minHeight:"100vh", ...}}
+-                   bis_skin_checked="1"
+                  >
+              ...
+
+[00:03:35.735] Server  LOG      ✓ Compiled in 22ms

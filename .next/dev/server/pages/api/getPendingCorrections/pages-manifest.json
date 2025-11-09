@@ -1,0 +1,3 @@
+{
+  "/api/getPendingCorrections": "pages/api/getPendingCorrections.js"
+}

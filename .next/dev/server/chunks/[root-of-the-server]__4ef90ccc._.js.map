@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Younes/younes-translator/pages/api/translate.js"],"sourcesContent":["import translate from \"@vitalets/google-translate-api\";\r\n\r\nexport default async function handler(req, res) {\r\n  const { text, target } = req.query;\r\n\r\n  if (!text || !target) {\r\n    return res.status(400).json({ error: \"Missing text or target language\" });\r\n  }\r\n\r\n  try {\r\n    const result = await translate(text, { to: target });\r\n    res.status(200).json({ translated: result.text });\r\n  } catch (err) {\r\n    res.status(500).json({ error: err.message });\r\n  }\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;;AAEe,eAAe,QAAQ,GAAG,EAAE,GAAG;IAC5C,MAAM,EAAE,IAAI,EAAE,MAAM,EAAE,GAAG,IAAI,KAAK;IAElC,IAAI,CAAC,QAAQ,CAAC,QAAQ;QACpB,OAAO,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;YAAE,OAAO;QAAkC;IACzE;IAEA,IAAI;QACF,MAAM,SAAS,MAAM,IAAA,oLAAS,EAAC,MAAM;YAAE,IAAI;QAAO;QAClD,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;YAAE,YAAY,OAAO,IAAI;QAAC;IACjD,EAAE,OAAO,KAAK;QACZ,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;YAAE,OAAO,IAAI,OAAO;QAAC;IAC5C;AACF","debugId":null}}]
+}

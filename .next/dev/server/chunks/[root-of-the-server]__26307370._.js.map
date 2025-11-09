@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 28, "column": 0}, "map": {"version":3,"sources":["file:///H:/younes-translator/pages/api/getPendingCorrections.js"],"sourcesContent":["import fs from \"fs\";\r\nimport path from \"path\";\r\n\r\nexport default function handler(req, res) {\r\n  const pendingPath = path.join(process.cwd(), \"data\", \"pendingCorrections.json\");\r\n  const pending = fs.existsSync(pendingPath)\r\n    ? JSON.parse(fs.readFileSync(pendingPath, \"utf8\"))\r\n    : [];\r\n  res.status(200).json(pending);\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;AACA;;;AAEe,SAAS,QAAQ,GAAG,EAAE,GAAG;IACtC,MAAM,cAAc,4GAAI,CAAC,IAAI,CAAC,QAAQ,GAAG,IAAI,QAAQ;IACrD,MAAM,UAAU,wGAAE,CAAC,UAAU,CAAC,eAC1B,KAAK,KAAK,CAAC,wGAAE,CAAC,YAAY,CAAC,aAAa,WACxC,EAAE;IACN,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;AACvB","debugId":null}}]
+}
