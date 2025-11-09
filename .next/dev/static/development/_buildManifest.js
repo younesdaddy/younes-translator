@@ -1,6 +1,6 @@
 self.__BUILD_MANIFEST = {
-  "/_error": [
-    "static/chunks/pages/_error.js"
+  "/": [
+    "static/chunks/pages/index.js"
   ],
   "/admin": [
     "static/chunks/pages/admin.js"
@@ -16,12 +16,9 @@ self.__BUILD_MANIFEST = {
     "/_error",
     "/admin",
     "/api/approveCorrection",
-    "/api/getCorrections",
     "/api/getPendingCorrections",
     "/api/rejectCorrection",
     "/api/submitCorrection",
-    "/api/translate",
-    "/api/translate - Copy",
-    "/index - Copy"
+    "/api/translate"
   ]
 };self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()

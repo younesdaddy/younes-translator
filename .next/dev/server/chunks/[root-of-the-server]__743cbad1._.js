@@ -44,13 +44,16 @@ function handler(req, res) {
     });
     const pendingPath = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(process.cwd(), "data", "pendingCorrections.json");
     const approvedPath = __TURBOPACK__imported__module__$5b$externals$5d2f$path__$5b$external$5d$__$28$path$2c$__cjs$29$__["default"].join(process.cwd(), "data", "approvedCorrections.json");
+    // Remove from pending
     let pending = __TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].existsSync(pendingPath) ? JSON.parse(__TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].readFileSync(pendingPath, "utf8")) : [];
     pending = pending.filter((p)=>!(p.original === original && p.user_translation === user_translation));
     __TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].writeFileSync(pendingPath, JSON.stringify(pending, null, 2));
+    // Add to approved with status
     let approved = __TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].existsSync(approvedPath) ? JSON.parse(__TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].readFileSync(approvedPath, "utf8")) : [];
     approved.push({
         original,
-        user_translation
+        user_translation,
+        status: "approved"
     });
     __TURBOPACK__imported__module__$5b$externals$5d2f$fs__$5b$external$5d$__$28$fs$2c$__cjs$29$__["default"].writeFileSync(approvedPath, JSON.stringify(approved, null, 2));
     res.status(200).json({

@@ -1,7 +1,10 @@
 {
+  "/": "pages/index.js",
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/_error": "pages/_error.js",
   "/admin": "pages/admin.js",
-  "/api/getPendingCorrections": "pages/api/getPendingCorrections.js"
+  "/api/approveCorrection": "pages/api/approveCorrection.js",
+  "/api/getPendingCorrections": "pages/api/getPendingCorrections.js",
+  "/api/submitCorrection": "pages/api/submitCorrection.js",
+  "/api/translate": "pages/api/translate.js"
 }
