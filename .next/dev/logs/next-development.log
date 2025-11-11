@@ -1,57 +1,7 @@
-[00:00:01.398] Server  LOG      ✓ Ready in 877ms
-[00:00:03.309] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
+[00:00:01.485] Server  LOG      ✓ Ready in 949ms
+[00:00:03.467] Server  WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:00:09.088] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  <Root callbacks={[...]}>
-    <Head>
-    <AppContainer>
-      <Container fn={function fn}>
-        <PagesDevOverlayBridge>
-          <PagesDevOverlayErrorBoundary>
-            <PathnameContextProviderAdapter router={{sdc:{},sbc:{}, ...}} isAutoExport={true}>
-              <App pageProps={{}} Component={function Home} err={undefined} router={{sdc:{},sbc:{}, ...}}>
-                <Home>
-                  <Head>
-                  <div
-                    style={{fontFamily:"'Pacifico'...",minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center", ...}}
--                   bis_skin_checked="1"
-                  >
-                    <div
-                      style={{textAlign:"center",marginBottom:"20px"}}
--                     bis_skin_checked="1"
-                    >
-                    <div
-                      style={{backgroundColor:"#ffffff",padding:"25px",borderRadius:"15px",boxShadow:"0 6px 15px...",width:"100%", ...}}
--                     bis_skin_checked="1"
-                    >
-                      <textarea>
-                      <div
-                        style={{display:"flex",gap:12,alignItems:"center",marginBottom:15}}
--                       bis_skin_checked="1"
-                      >
-                      <div
-                        style={{minHeight:"90px",padding:"14px",borderRadius:"12px",border:"1px solid ...",backgroundColor:"#e5e4f0", ...}}
--                       bis_skin_checked="1"
-                      >
-              ...
-
-[00:00:09.088] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
+[00:00:04.133] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:04:33.302] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
+[00:00:56.548] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
 See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:05:11.506] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
-See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:06:08.014] Browser WARN    Do not add stylesheets using next/head (see <link rel="stylesheet"> tag with href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pacifico&display=swap"). Use Document instead. 
-See more info here: https://nextjs.org/docs/messages/no-stylesheets-in-head-component
-[00:12:21.094] Server  LOG      ✓ Compiled in 154ms
