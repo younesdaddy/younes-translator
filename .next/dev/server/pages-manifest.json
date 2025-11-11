@@ -3,8 +3,7 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/admin": "pages/admin.js",
-  "/api/approveCorrection": "pages/api/approveCorrection.js",
-  "/api/getPendingCorrections": "pages/api/getPendingCorrections.js",
+  "/api/adminAction": "pages/api/adminAction.js",
   "/api/submitCorrection": "pages/api/submitCorrection.js",
   "/api/translate": "pages/api/translate.js"
 }

@@ -28,32 +28,24 @@ var __TURBOPACK__imported__module__$5b$externals$5d2f$google$2d$translate$2d$api
 ;
 async function handler(req, res) {
     try {
-        const { text, target } = req.query || {};
+        const { text, target } = req.query; // or req.body for POST
         if (!text || !target) {
             return res.status(400).json({
                 translation: null,
                 error: 'Missing text or target'
             });
         }
-        // call the translator library
         const result = await (0, __TURBOPACK__imported__module__$5b$externals$5d2f$google$2d$translate$2d$api$2d$x__$5b$external$5d$__$28$google$2d$translate$2d$api$2d$x$2c$__cjs$29$__["default"])(String(text), {
             to: String(target)
         });
-        const translated = result?.text ?? null;
-        if (!translated) {
-            return res.status(500).json({
-                translation: null,
-                error: 'No translation produced'
-            });
-        }
-        return res.status(200).json({
-            translation: translated
+        // This line is critical: get the translated text
+        const translation = result.text;
+        res.status(200).json({
+            translation
         });
     } catch (err) {
-        console.error('Translate API error:', err && (err.message ?? err));
-        return res.status(500).json({
-            translation: null,
-            error: 'Translate failed: ' + (err && err.message ? err.message : String(err))
+        res.status(500).json({
+            error: err.message
         });
     }
 }

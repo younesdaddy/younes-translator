@@ -13,7 +13,7 @@ module.exports = mod;
 }),
 "[project]/pages/api/translate.js [api] (ecmascript)", ((__turbopack_context__, module, exports) => {
 
-const e = new Error("Could not parse module '[project]/pages/api/translate.js'\n\nUnterminated string constant");
+const e = new Error("Could not parse module '[project]/pages/api/translate.js'\n\nExpected '}', got '<eof>'");
 e.code = 'MODULE_UNPARSABLE';
 throw e;
 }),

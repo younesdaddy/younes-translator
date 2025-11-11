@@ -514,28 +514,33 @@ function Home() {
             setLoading(false);
         }
     };
-    const handleSubmitCorrection = ()=>{
+    const handleSubmitCorrection = async ()=>{
         if (!userCorrection.trim()) {
             alert("Nothing to submit!");
             return;
         }
-        fetch("/api/submitCorrection", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                original: text,
-                user_translation: userCorrection
-            })
-        }).then((res)=>res.json()).then((data)=>{
-            if (data.error) {
-                alert("Error submitting correction: " + data.error);
-            } else {
-                alert("Correction submitted!");
-                setShowCorrectionPanel(false);
+        try {
+            const res = await fetch("/api/submitCorrection", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    original: text,
+                    user_translation: userCorrection
+                })
+            });
+            const data = await res.json();
+            if (!res.ok || data.error) {
+                alert("Error submitting correction: " + (data.error || "Unknown error"));
+                return;
             }
-        }).catch(()=>alert("Network error!"));
+            alert("Correction submitted!");
+            setShowCorrectionPanel(false);
+            setUserCorrection("");
+        } catch (err) {
+            alert("Network or server error: " + err.message);
+        }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
@@ -546,7 +551,7 @@ function Home() {
                         rel: "stylesheet"
                     }, void 0, false, {
                         fileName: "[project]/pages/index.js",
-                        lineNumber: 80,
+                        lineNumber: 85,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("link", {
@@ -554,13 +559,13 @@ function Home() {
                         href: "/favicon.ico"
                     }, void 0, false, {
                         fileName: "[project]/pages/index.js",
-                        lineNumber: 84,
+                        lineNumber: 89,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/index.js",
-                lineNumber: 79,
+                lineNumber: 84,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -590,7 +595,7 @@ function Home() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.js",
-                                lineNumber: 98,
+                                lineNumber: 103,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -602,13 +607,13 @@ function Home() {
                                 children: "✒ Younes Translator 📖"
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.js",
-                                lineNumber: 99,
+                                lineNumber: 104,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/index.js",
-                        lineNumber: 97,
+                        lineNumber: 102,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -646,7 +651,7 @@ function Home() {
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.js",
-                                lineNumber: 110,
+                                lineNumber: 115,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -674,7 +679,7 @@ function Home() {
                                                 children: "Arabic 📗"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/index.js",
-                                                lineNumber: 148,
+                                                lineNumber: 153,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -682,7 +687,7 @@ function Home() {
                                                 children: "French 📘"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/index.js",
-                                                lineNumber: 149,
+                                                lineNumber: 154,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -690,13 +695,13 @@ function Home() {
                                                 children: "English 📙"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/index.js",
-                                                lineNumber: 150,
+                                                lineNumber: 155,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/index.js",
-                                        lineNumber: 136,
+                                        lineNumber: 141,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -716,7 +721,7 @@ function Home() {
                                         children: loading ? "Translating…" : "Translate"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.js",
-                                        lineNumber: 153,
+                                        lineNumber: 158,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -738,13 +743,13 @@ function Home() {
                                         children: "Clear"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.js",
-                                        lineNumber: 171,
+                                        lineNumber: 176,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/index.js",
-                                lineNumber: 135,
+                                lineNumber: 140,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -766,12 +771,12 @@ function Home() {
                                     children: "Translation will appear here"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/index.js",
-                                    lineNumber: 198,
+                                    lineNumber: 203,
                                     columnNumber: 24
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.js",
-                                lineNumber: 187,
+                                lineNumber: 192,
                                 columnNumber: 11
                             }, this),
                             result && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -788,12 +793,12 @@ function Home() {
                                     cursor: "pointer",
                                     fontFamily: "'Cinzel', serif",
                                     fontSize: "15px",
-                                    fontWeight: "700" // bolded button text
+                                    fontWeight: "700"
                                 },
                                 children: "Submit Correction ?"
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.js",
-                                lineNumber: 202,
+                                lineNumber: 207,
                                 columnNumber: 13
                             }, this),
                             showCorrectionPanel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -822,7 +827,7 @@ function Home() {
                                         onChange: (e)=>setUserCorrection(e.target.value)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.js",
-                                        lineNumber: 230,
+                                        lineNumber: 235,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -841,25 +846,25 @@ function Home() {
                                         children: "Submit"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.js",
-                                        lineNumber: 244,
+                                        lineNumber: 249,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/index.js",
-                                lineNumber: 221,
+                                lineNumber: 226,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/index.js",
-                        lineNumber: 102,
+                        lineNumber: 107,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/index.js",
-                lineNumber: 87,
+                lineNumber: 92,
                 columnNumber: 7
             }, this)
         ]

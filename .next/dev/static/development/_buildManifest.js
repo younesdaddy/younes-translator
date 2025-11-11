@@ -15,10 +15,13 @@ self.__BUILD_MANIFEST = {
     "/_app",
     "/_error",
     "/admin",
-    "/api/approveCorrection",
-    "/api/getPendingCorrections",
-    "/api/rejectCorrection",
+    "/api/adminAction",
+    "/api/adminAction/route",
     "/api/submitCorrection",
-    "/api/translate"
+    "/api/submitTranslation/route",
+    "/api/translate",
+    "/submit-correction",
+    "/submit-translation",
+    "/submitTranslation"
   ]
 };self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()

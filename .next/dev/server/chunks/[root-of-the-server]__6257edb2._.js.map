@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Younes/younes-translator/pages/api/check-keys.js"],"sourcesContent":["export default function handler(req, res) {\r\n  return res.status(200).json({\r\n    NEXT_PUBLIC_SUPABASE_URL: !!process.env.NEXT_PUBLIC_SUPABASE_URL,\r\n    NEXT_PUBLIC_SUPABASE_ANON_KEY: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,\r\n    SUPABASE_SERVICE_ROLE_KEY: !!process.env.SUPABASE_SERVICE_ROLE_KEY\r\n  });\r\n}\r\n"],"names":[],"mappings":";;;;AAAe,SAAS,QAAQ,GAAG,EAAE,GAAG;IACtC,OAAO,IAAI,MAAM,CAAC,KAAK,IAAI,CAAC;QAC1B,0BAA0B,CAAC;QAC3B,+BAA+B,CAAC;QAChC,2BAA2B,CAAC,CAAC,QAAQ,GAAG,CAAC,yBAAyB;IACpE;AACF","debugId":null}}]
+}

@@ -1,20 +1,29 @@
-import fs from "fs";
-import path from "path";
+import { supabaseAdmin } from "../../lib/supabase";
 
-export default function handler(req, res) {
+function normalize(s = "") {
+  return s.trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   const { original, user_translation } = req.body;
-  if (!original || !user_translation) return res.status(400).json({ error: "Missing data" });
+  if (!original || !user_translation) return res.status(400).json({ error: "Missing fields" });
 
-  const pendingPath = path.join(process.cwd(), "data", "pendingCorrections.json");
+  try {
+    const normalizedOriginal = normalize(original);
+    const normalizedTranslation = user_translation.trim();
 
-  let pending = fs.existsSync(pendingPath)
-    ? JSON.parse(fs.readFileSync(pendingPath, "utf8"))
-    : [];
+    const { data, error } = await supabaseAdmin
+      .from("pendingcorrection")
+      .insert([{ original: normalizedOriginal, user_translation: normalizedTranslation }])
+      .select();
 
-  pending.push({ original, user_translation, status: "pending" });
-  fs.writeFileSync(pendingPath, JSON.stringify(pending, null, 2));
+    if (error) throw error;
 
-  res.status(200).json({ success: true });
+    res.status(200).json({ success: true, row: data?.[0] ?? null });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 }

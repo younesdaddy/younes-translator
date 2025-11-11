@@ -51,27 +51,32 @@ export default function Home() {
     }
   };
 
-  const handleSubmitCorrection = () => {
+  const handleSubmitCorrection = async () => {
     if (!userCorrection.trim()) {
       alert("Nothing to submit!");
       return;
     }
 
-    fetch("/api/submitCorrection", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ original: text, user_translation: userCorrection })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          alert("Error submitting correction: " + data.error);
-        } else {
-          alert("Correction submitted!");
-          setShowCorrectionPanel(false);
-        }
-      })
-      .catch(() => alert("Network error!"));
+    try {
+      const res = await fetch("/api/submitCorrection", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ original: text, user_translation: userCorrection })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || data.error) {
+        alert("Error submitting correction: " + (data.error || "Unknown error"));
+        return;
+      }
+
+      alert("Correction submitted!");
+      setShowCorrectionPanel(false);
+      setUserCorrection("");
+    } catch (err) {
+      alert("Network or server error: " + err.message);
+    }
   };
 
   return (
@@ -210,7 +215,7 @@ export default function Home() {
                 cursor: "pointer",
                 fontFamily: "'Cinzel', serif",
                 fontSize: "15px",
-                fontWeight: "700"   // bolded button text
+                fontWeight: "700"
               }}
             >
               Submit Correction ?
